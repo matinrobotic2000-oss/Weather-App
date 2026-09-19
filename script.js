@@ -1,11 +1,13 @@
 import { updateWeatherInfo } from './weather.js';
 import { showDisplaySection } from './containerView.js';
+import { showAutocompleteList } from './autoCompleteList.js';
 
 const cityInput = document.querySelector('.city-input');
 const searcBtn = document.querySelector('.search-btn');
 
 const notFound = document.querySelector('.not-found');
 const weatherInfoSection = document.querySelector('.weather-info');
+const autocompleteList = document.querySelector('.autocomplete-list');
 
 const searchCity = async function () {
   const city = cityInput.value.trim();
@@ -16,6 +18,7 @@ const searchCity = async function () {
 
   if (success) {
     showDisplaySection(weatherInfoSection);
+    autocompleteList.classList.remove('show');
   } else {
     showDisplaySection(notFound);
   }
@@ -31,3 +34,5 @@ cityInput.addEventListener('keydown', e => {
     searchCity();
   }
 });
+///////////////////////////
+cityInput.addEventListener('input', showAutocompleteList);
